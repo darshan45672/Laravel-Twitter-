@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class IdeasController extends Controller
 {
     //
+    public function show(Idea $idea){
+        return view('ideas.show',[
+    
+        ]);
+    }
     public function store(){
         request()->validate([
             'idea' => 'required|min:10|max:300',
@@ -19,10 +24,11 @@ class IdeasController extends Controller
 
         return redirect()->route('homepage')->with('sucess','idea created Sucessfully!');
     }
-    public function destroy(Idea $id){
+    public function destroy(Idea $idea){
         
-        $id->delete();
+        $idea->delete();
 
         return redirect()->route('homepage')->with('sucess','Idea deleted Sucessfully !');
     }
+
 }
