@@ -38,7 +38,7 @@
     </div>
     <div class="col-6">
         
-        <h4> Share yours ideas </h4>
+        @include('shareIdea.sucessMessage')
         @include('shareIdea.submitIdea')
         <hr>
         @foreach ($ideas as $idea)
@@ -46,6 +46,7 @@
             @include('shareIdea.ideaCard')
         </div>
         @endforeach
+        <div class="mt-3"> {{ $ideas -> links() }} </div>
     </div>
     <div class="col-3">
         <div class="card">
