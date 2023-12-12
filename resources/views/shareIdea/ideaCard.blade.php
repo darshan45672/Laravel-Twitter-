@@ -9,6 +9,7 @@
                         </a></h5>
                 </div>
             </div>
+            
             <div> <form method="POST" action="{{ route('idea.destroy',$idea->id) }} " >
                 @csrf
                 @method('delete')
