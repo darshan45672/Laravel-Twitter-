@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ DashboardController::class, 'index']) -> name('homepage');
 
 Route::post('/ideas', [ IdeasController::class, 'store']) -> name('idea.create');
+Route::delete('/ideas/{id}', [ IdeasController::class, 'destroy']) -> name('idea.destroy');
 
 Route::get('/terms', function(){
     return view('terms');

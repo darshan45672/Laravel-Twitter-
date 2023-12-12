@@ -19,4 +19,10 @@ class IdeasController extends Controller
 
         return redirect()->route('homepage')->with('sucess','idea created Sucessfully!');
     }
+    public function destroy($id){
+        
+        Idea::where('id',$id)->firstOrFail()->delete();
+        
+        return redirect()->route('homepage')->with('sucess','Idea deleted Sucessfully !');
+    }
 }
