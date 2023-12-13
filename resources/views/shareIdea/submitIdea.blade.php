@@ -4,9 +4,9 @@
     <form action=" {{ route('ideas.store') }} " method="post">
         @csrf
         <div class="mb-3">
-            <textarea name="idea" class="form-control" id="idea" rows="3"></textarea>
+            <textarea name="content" class="form-control" id="content" rows="3"></textarea>
         </div>
-        @error('idea')
+        @error('content')
             <span class="d-block fs-6 text-danger mt-2" > {{ $message }} </span>
         @enderror
         <div class="">
