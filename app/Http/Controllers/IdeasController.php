@@ -9,9 +9,7 @@ class IdeasController extends Controller
 {
     //
     public function show(Idea $idea){
-        return view('ideas.show',[
-    
-        ]);
+        return view('ideas.show', compact('idea'));
     }
     public function store(){
         request()->validate([
