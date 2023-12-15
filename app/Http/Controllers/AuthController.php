@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function register(){
-        return view("auth.register");
+        return view('auth.register');
     }
 
     public function store(){
@@ -25,6 +25,24 @@ class AuthController extends Controller
             'password'=> Hash::make($validated['password'])
         ]);
 
-        return redirect()->route('homepage')->with('success','Account created sucessfully !');
+        return redirect()->route('homepage')->with('sucess','Account created sucessfully !');
+    }
+
+    public function login(){
+        return view('auth.login');
+    }
+
+    public function authenticate(){
+
+        $validated = request()->validate([~
+            'email'=>'required|email',
+            'password' => 'required|min:8']);
+
+            if(auth()->attempt($validated)){
+                request()->session()->regenerate();
+
+                return redirect()->route('homepage')->with('sucess','Logged in sucessfully !');
+            };
+        return redirect()->route('login')->withErrors(['email' =>"no user found",]);
     }
 }
