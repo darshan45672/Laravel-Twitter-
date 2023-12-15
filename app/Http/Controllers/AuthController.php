@@ -34,7 +34,7 @@ class AuthController extends Controller
 
     public function authenticate(){
 
-        $validated = request()->validate([~
+        $validated = request()->validate([
             'email'=>'required|email',
             'password' => 'required|min:8']);
 
@@ -44,5 +44,13 @@ class AuthController extends Controller
                 return redirect()->route('homepage')->with('sucess','Logged in sucessfully !');
             };
         return redirect()->route('login')->withErrors(['email' =>"no user found",]);
+    }
+
+    public function logout(){
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('homepage')->with('sucess','Logged out sucessfully !');
     }
 }
