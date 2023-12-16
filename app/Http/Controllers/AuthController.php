@@ -18,13 +18,14 @@ class AuthController extends Controller
             'name' => 'required|min:3|max:40',
             'email'=>'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed']);
-   
+
+        // creating user detials 
         User::create([
             'name'=> $validated['name'],
             'email'=> $validated['email'],
             'password'=> Hash::make($validated['password'])
         ]);
-
+        // returning the page to homepage after user has registered sucessfully
         return redirect()->route('homepage')->with('sucess','Account created sucessfully !');
     }
 
