@@ -21,26 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('homepage');
 
-Route::group(['prefix' => 'ideas/', 'as' => 'ideas.'], function () {
+Route::resource('ideas', IdeasController::class)->except(['index','create',])->middleware('auth');
+Route::resource('ideas', IdeasController::class)->only(['show',]);
 
-    Route::get('/{idea}', [IdeasController::class, 'show'])->name('show');
-
-    Route::group(['middleware' => 'auth'], function () {
-        Route::post('/', [IdeasController::class, 'store'])->name('store');
-
-        Route::get('/{idea}/edit', [IdeasController::class, 'edit'])->name('edit');
-
-        Route::put('/{idea}', [IdeasController::class, 'update'])->name('update');
-
-        Route::delete('/{idea}', [IdeasController::class, 'destroy'])->name('destroy');
-
-        Route::post('/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
-    });
-
-});
-
-
-
+Route::resource('ideas.comments', CommentController::class)->only(['store',])->middleware('auth');
 
 Route::get('/terms', function () {
     return view('terms');
