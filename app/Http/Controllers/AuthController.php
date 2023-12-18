@@ -29,7 +29,7 @@ class AuthController extends Controller
         return redirect()->route('homepage')->with('sucess','Account created sucessfully !');
     }
 
-    public function login(){
+    public function login(){ 
         return view('auth.login');
     }
 

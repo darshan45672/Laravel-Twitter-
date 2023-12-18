@@ -7,17 +7,10 @@
     <div class="col-6">
         
         @include('shareIdea.sucessMessage')
-        @include('shareIdea.submitIdea')
-        <hr>
-        {{-- @if (count($ideas) > 0)
-        @foreach ($ideas as $idea)
         <div class="mt-3">
-            @include('shareIdea.ideaCard')
+            @include('shareIdea.userCard')
         </div>
-        @endforeach
-        @else
-            No results found ...
-        @endif --}}
+        <hr>
 
         @forelse ($ideas as $idea)
         <div class="mt-3">
@@ -28,9 +21,10 @@
         @endforelse
         
         <div class="mt-3"> {{ $ideas ->withQueryString() -> links() }} </div>
+
     </div>
     <div class="col-3">
-        @include('shareIdea.searchBar')
+        @include('shareIdea.searchBar') 
         @include('shareIdea.followBar')
     </div>
 </div>
