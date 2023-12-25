@@ -25,7 +25,7 @@
             <div class="mt-4">
                 <label for="">Profile Picture</label>
                 <input type="file" name="image" class="form-control">
-                @error('name')
+                @error('image')
                     <span class="text-danger fs-6">{{$message}}</span>
                 @enderror
             </div>

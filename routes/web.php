@@ -31,6 +31,9 @@ Route::resource('users', UserController::class)->only(['show','edit','update'])-
 
 Route::get('profile', [UserController::class,'profile'])->middleware('auth')->name('profile');
 
+Route::post('users/{user}/follow', [,'follow'])->middleware('auth')->name('users.follow');
+Route::post('users/{user}/unfollow', [,'unfollow'])->middleware('auth')->name('users.unfollow');
+
 Route::get('/terms', function () {
     return view('terms');
 });
