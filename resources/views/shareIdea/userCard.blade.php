@@ -30,13 +30,23 @@
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
                     </span> {{ $user->comments()->count() }} </a>
             </div>
-            <div class="mt-3">
-                @auth
-                    @if (auth()->id() !== $user->id)
-                        <button class="btn btn-primary btn-sm"> Follow </button>
-                    @endif
+            @auth
+                @if (auth()->id() !== $user->id)
+                        <div class="mt-3">
+                            @if (Auth::user()->follows($user))
+                            <form method="POST" action="{{ route('users.unfollow', $user->id)}}">
+                                @csrf
+                                <button class="btn btn-danger btn-sm"> Unfollow </button>
+                            </form>
+                            @else  
+                            <form method="POST" action="{{ route('users.follow', $user->id)}}">
+                                @csrf
+                                <button class="btn btn-primary btn-sm"> Follow </button>
+                            </form>
+                            @endif
+                        </div>
+                @endif
                 @endauth
-            </div>
         </div>
     </div>
 </div>

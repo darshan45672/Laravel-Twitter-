@@ -47,13 +47,6 @@
                     <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
                         </span> {{ $user->comments()->count() }} </a>
                 </div>
-                <div class="mt-3">
-                    @auth
-                        @if (auth()->id() !== $user->id)
-                            <button class="btn btn-primary btn-sm"> Follow </button>
-                        @endif
-                    @endauth
-                </div>
             </div>
         </form>
     </div>
