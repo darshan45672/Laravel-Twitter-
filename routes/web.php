@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -28,6 +29,11 @@ Route::resource('ideas', IdeasController::class)->only(['show',]);
 Route::resource('ideas.comments', CommentController::class)->only(['store',])->middleware('auth');
 
 Route::resource('users', UserController::class)->only(['show','edit','update'])->middleware('auth');
+
+Route::get('profile', [UserController::class,'profile'])->middleware('auth')->name('profile');
+
+Route::post('users/{user}/follow', [FollowController::class,'follow'])->middleware('auth')->name('users.follow');
+Route::post('users/{user}/unfollow', [FollowController::class,'unfollow'])->middleware('auth')->name('users.unfollow');
 
 Route::get('/terms', function () {
     return view('terms');
