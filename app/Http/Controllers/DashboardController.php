@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisterEmail;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 

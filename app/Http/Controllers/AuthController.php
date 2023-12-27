@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisterEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -20,11 +22,14 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed']);
 
         // creating user detials 
-        User::create([
+        $user = User::create([
             'name'=> $validated['name'],
             'email'=> $validated['email'],
             'password'=> Hash::make($validated['password'])
         ]);
+
+        Mail::to($user->email)->send(new RegisterEmail($user));
+
         // returning the page to homepage after user has registered sucessfully
         return redirect()->route('homepage')->with('sucess','Account created sucessfully !');
     }
