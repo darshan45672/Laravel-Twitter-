@@ -2,32 +2,24 @@
     <div class="card-body pt-3">
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#">
+                <a class="{{ (Route::is('homepage') ? 'text-white bg-primary rounded' : '')}} nav-link text-dark" href="{{ route('homepage')}}">
                     <span>Home</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span>Explore</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span>Feed</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="{{(Route::is('terms') ? 'text-white bg-primary rounded' : '')}} nav-link" href="{{ route('terms')}}">
                     <span>Terms</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span>Support</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span>Settings</span></a>
             </li>
         </ul>
     </div>
-    <div class="card-footer text-center py-2">
-        <a class="btn btn-link btn-sm" href="#">View Profile </a>
-    </div>
+        @auth
+            @if (Route::is('profile'))
+            <div class="card-footer text-center py-2">
+                <a class="btn btn-link btn-sm" href="{{ route('homepage')}}">Back to Home</a>
+            </div>
+            @else
+            <div class="card-footer text-center py-2">
+                <a class="btn btn-link btn-sm" href="{{ route('profile')}}">View Profile </a>
+            </div>
+            @endif
+        @endauth
 </div>
