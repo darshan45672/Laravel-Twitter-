@@ -9,6 +9,8 @@ class Idea extends Model
 {
     use HasFactory;
 
+    // protected $with = ['user:id,name,image','comments.users:id,name,image'] ;
+
     // protected $guarded = [];
     protected $fillable = [
         'content',
