@@ -6,8 +6,7 @@ use App\Mail\RegisterEmail;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
-{
+class DashboardController extends Controller {
     public function index(){
 
         $ideas = Idea::with('user','comments.user')->orderBy('created_at', 'DESC');
