@@ -14,7 +14,7 @@
 
         @forelse ($ideas as $idea)
         <div class="mt-3">
-            @include('shareIdea.ideaCard')
+            @include('ideas.shared.ideaCard')
         </div>
         @empty
             <p class="text-center my-3"> No results found ...</p>
