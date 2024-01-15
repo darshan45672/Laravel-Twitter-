@@ -9,6 +9,7 @@ use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +47,5 @@ Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
+
+Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware(['auth','admin'])->name('admin.dashboard');
