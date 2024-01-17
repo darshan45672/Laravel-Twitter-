@@ -19,6 +19,7 @@
                     <button class="ms-2 btn btn-danger btn-sm">X</button>
                 </form>
                 @endif
+                <a href="{{ route('ideas.show', $idea->id)}}">View</a>
             </div>
         </div>
     </div>
