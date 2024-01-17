@@ -10,7 +10,8 @@
             </div>
 
             <div>
-                @if (auth()->id() === $idea->user_id)
+                {{-- <a href="{{ route('ideas.show', $idea->id)}}">View</a> --}}
+                @can('idea.edit', $idea)
                 <form method="POST" action="{{ route('ideas.destroy',$idea->id) }} ">
                     @csrf
                     @method('delete')
@@ -18,8 +19,7 @@
                     <a href="{{ route('ideas.show', $idea->id)}}">View</a>
                     <button class="ms-2 btn btn-danger btn-sm">X</button>
                 </form>
-                @endif
-                <a href="{{ route('ideas.show', $idea->id)}}">View</a>
+                @endcan
             </div>
         </div>
     </div>
