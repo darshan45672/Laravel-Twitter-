@@ -9,17 +9,19 @@
                 </div>
             </div>
 
-            <div>
-                {{-- <a href="{{ route('ideas.show', $idea->id)}}">View</a> --}}
-                @can('idea.edit', $idea)
+            <div class="d-flex">
+                <a class="mt-2" href="{{ route('ideas.show', $idea->id)}}">View</a>
+                @auth
+                @can('update', $idea)
                 <form method="POST" action="{{ route('ideas.destroy',$idea->id) }} ">
                     @csrf
                     @method('delete')
                     <a class="mx-2" href="{{ route('ideas.edit', $idea->id)}}">Edit</a>
-                    <a href="{{ route('ideas.show', $idea->id)}}">View</a>
+                    {{-- <a href="{{ route('ideas.show', $idea->id)}}">View</a> --}}
                     <button class="ms-2 btn btn-danger btn-sm">X</button>
                 </form>
                 @endcan
+                @endauth
             </div>
         </div>
     </div>

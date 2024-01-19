@@ -29,7 +29,8 @@ class IdeasController extends Controller
         // if (auth()->id() !== $idea->user_id){
         //     abort(404);
         // }
-        $this->authorize('idea.edit',$idea);
+        // $this->authorize('idea.edit',$idea);this is using gates
+        $this->authorize('update',$idea);
 
         $editing = true;
         return view('ideas.show', compact('idea','editing'));
@@ -41,7 +42,8 @@ class IdeasController extends Controller
         //     abort(404);
         // }
 
-        $this->authorize('idea.delete',$idea);
+        // $this->authorize('idea.delete',$idea);
+        $this->authorize('delete',$idea);
 
         $idea->delete();
 
@@ -52,7 +54,7 @@ class IdeasController extends Controller
         // if (auth()->id() !== $idea->user_id){
         //     abort(404);
         // }
-        $this->authorize('idea.edit',$idea);
+        $this->authorize('update',$idea);
 
         $validated = request()->validate([
             'content' => 'required|min:10|max:300',
