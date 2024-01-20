@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreIdeaRequest;
+use App\Http\Requests\UpdateeIdeaRequest;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
@@ -13,10 +15,8 @@ class IdeasController extends Controller
     }
     
 
-    public function store(){
-        $validated = request()->validate([
-            'content' => 'required|min:5|max:300',
-        ]);
+    public function store(StoreIdeaRequest $request){
+        $validated = $request->validated();
 
         $validated['user_id'] = auth()->id();
         Idea::create($validated);
@@ -50,15 +50,13 @@ class IdeasController extends Controller
         return redirect()->route('homepage')->with('sucess','Idea deleted Sucessfully !');
     }
 
-    public function update(Idea $idea){
+    public function update(UpdateeIdeaRequest $request, Idea $idea){
         // if (auth()->id() !== $idea->user_id){
         //     abort(404);
         // }
         $this->authorize('update',$idea);
 
-        $validated = request()->validate([
-            'content' => 'required|min:10|max:300',
-        ]);
+        $validated = $request->validated();
 
         $idea->update($validated);
 
